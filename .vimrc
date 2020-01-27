@@ -5,11 +5,10 @@ filetype off   " Helps force plugins to load correctly, turn back on below
 call plug#begin('~/.vim/plugged')
 
 " Dress up vim
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-surround'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'mhinz/vim-startify'
-Plug 'ryanoasis/vim-devicons'
 Plug 'tomasiser/vim-code-dark'
 Plug 'junegunn/goyo.vim'
 Plug 'luochen1990/rainbow'
@@ -23,11 +22,13 @@ Plug 'scrooloose/nerdtree'
 Plug 'tsony-tsonev/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'scrooloose/nerdcommenter'
+Plug 'ryanoasis/vim-devicons'  " Always load the vim-devicons as the very last one
 
 call plug#end()
 " }}}
 
 let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
+
 " GENERAL {{{
 filetype plugin indent on      " load filetype-specific indent files
 
@@ -47,7 +48,7 @@ set expandtab
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
-set number
+set number relativenumber
 set ignorecase
 set smartcase
 set autochdir
@@ -142,8 +143,7 @@ let g:coc_global_extensions = [
   \ 'coc-css',
   \ 'coc-prettier',
   \ 'coc-json',
-  \ 'coc-angular',
-  \ 'coc-texlab'
+  \ 'coc-python'
   \ ]
 
 " prettier command for coc
@@ -259,8 +259,7 @@ map <leader>D :ColorizerDetachFromBuffer<CR>
 map <leader>g :Goyo<CR>
 
 " Enable and disable auto comment
-map <leader>c :setlocal formatoptions-=cro<CR>
-map <leader>C :setlocal formatoptions=cro<CR>
+autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
 
 " Enable spell checking, o for othography
 map <leader>s :setlocal spell! spelllang=en_us<CR>
