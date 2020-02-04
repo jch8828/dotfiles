@@ -4,14 +4,14 @@ filetype off   " Helps force plugins to load correctly, turn back on below
 " vim-plug {{{
 call plug#begin('~/.vim/plugged')
 
-" Dress up vim
+" Functionalities
+Plug 'mhinz/vim-startify'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-surround'
-Plug 'norcalli/nvim-colorizer.lua'
-Plug 'mhinz/vim-startify'
-Plug 'tomasiser/vim-code-dark'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-sensible'
+Plug 'scrooloose/nerdcommenter'
 Plug 'junegunn/goyo.vim'
-Plug 'luochen1990/rainbow'
 " Code Completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Fuzzy file search
@@ -21,7 +21,10 @@ Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tsony-tsonev/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'scrooloose/nerdcommenter'
+" Dress up vim
+Plug 'luochen1990/rainbow'
+Plug 'norcalli/nvim-colorizer.lua'
+Plug 'tomasiser/vim-code-dark'
 Plug 'ryanoasis/vim-devicons'  " Always load the vim-devicons as the very last one
 
 call plug#end()
@@ -35,31 +38,28 @@ filetype plugin indent on      " load filetype-specific indent files
 let mapleader=","
 inoremap jj  <Esc>
 nmap ; :
-let g:airline_theme = 'codedark'
 
 " Basic settings
 syntax on
-set hidden
-set history=500
-set encoding=utf-8
-set wrap
-set smarttab
-set expandtab
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
-set number relativenumber
-set ignorecase
-set smartcase
-set autochdir
-set cursorline          " highlight current line
-set showmatch           " highlight matching [{()}]
-set incsearch           " search as characters are entered
-set hlsearch            " highlight matches
-set ttyfast             " should make scrolling faster
-set lazyredraw          " redraw only when we need to.
 set termguicolors
 colorscheme codedark
+
+" Other Configurations
+filetype plugin indent on
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
+set incsearch ignorecase smartcase hlsearch
+set ruler laststatus=2 showcmd showmode
+set list listchars=trail:»,tab:»-
+set fillchars+=vert:\
+set wrap breakindent
+set encoding=utf-8
+set number relativenumber
+set title
+
+set cursorline          " highlight current line
+set showmatch           " highlight matching [{()}]
+set ttyfast             " should make scrolling faster
+set lazyredraw          " redraw only when we need to.
 
 " Autocompletion
 set backspace=indent,eol,start
@@ -215,14 +215,6 @@ nmap <rn> <Plug>(coc-rename)
 xmap <leader>cf  <Plug>(coc-format-selected)
 nmap <leader>cf  <Plug>(coc-format-selected)
 
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
@@ -288,6 +280,15 @@ autocmd BufWritePre * %s/\s\+$//e
 noremap <leader><Tab> <Esc>/<++><Enter>"_c4l
 inoremap <leader><Tab> <Esc>/<++><Enter>"_c4l
 vnoremap <leader><Tab> <Esc>/<++><Enter>"_c4l
+
+augroup FileTypeSpecificAutocommands
+  autocmd FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2
+  autocmd FileType php setlocal tabstop=2 softtabstop=2 shiftwidth=2
+  autocmd FileType go setlocal shiftwidth=4 tabstop=4 softtabstop=4
+  autocmd FileType sh setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+  autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
+  autocmd FileType journal setlocal shiftwidth=2 tabstop=2 softtabstop=2
+augroup END
 
 " shell
 map <leader>b i#!/bin/sh<CR><CR>
