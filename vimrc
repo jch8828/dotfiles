@@ -42,13 +42,13 @@ colorscheme codedark
 filetype plugin indent on      " load filetype-specific indent files
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent smartindent
 set incsearch ignorecase smartcase hlsearch
-set ruler laststatus=2 showcmd showmode
-set list listchars=trail:»,tab:»-
+set ruler laststatus=2 showcmd noshowmode  " If lightline/airline is enabled, don't show mode under it
+set list listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set fillchars+=vert:\
 set wrap breakindent
 set encoding=utf-8
 set number relativenumber
-set title
+set title  " Show the filename in the window titlebar
 
 set cursorline          " highlight current line
 set matchpairs+=<:>     " use % to jump between pairs
@@ -58,16 +58,17 @@ set ttyfast             " should make scrolling faster
 set lazyredraw          " redraw only when we need to.
 set hidden              " hide buffer when it is abandoned
 
-set backspace=indent,eol,start
-set splitbelow splitright   " Fix splitting
-set clipboard+=unnamedplus  " Use system clipboard
+set backspace=indent,eol,start  " Allow backspace in insert mode
+set splitbelow splitright       " Fix splitting
+set clipboard+=unnamedplus      " Use system clipboard
+" Make it obvious where 80 characters is
+set colorcolumn=1,80,100
 
 " edit vimrc/zshrc and load vimrc bindings
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
 nnoremap <leader>ez :vsp ~/.zshrc<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 autocmd! bufwritepost .vimrc source %
-
 
 " turn off search highlight
 nnoremap <leader><space> :set hlsearch!<CR>
@@ -116,12 +117,13 @@ let g:fzf_colors = {
   \ }
 
 " FZF key mapping
-noremap <leader>f :FZF<CR>
-noremap <leader>ff :Files<CR>
-noremap <leader>fa :Ag<CR>
-noremap <leader>fr :Rg<CR>
-noremap <leader>fb :Buffers<CR>
-noremap <leader>fh :History<CR>
+nnoremap <c-p> :Files<cr>
+nnoremap <leader>f :FZF<CR>
+nnoremap <leader>ff :Files<CR>
+nnoremap <leader>fa :Ag<CR>
+nnoremap <leader>fr :Rg<CR>
+nnoremap <leader>fb :Buffers<CR>
+nnoremap <leader>fh :History<CR>
 
 " Optional
 command! -bang -nargs=? -complete=dir Files
@@ -254,7 +256,7 @@ autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
 " Enable spell checking, o for othography
 map <leader>ss :setlocal spell! spelllang=en_us<CR>
 
-" Shortcutting split navigation
+" Quicker window movement
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
@@ -293,12 +295,12 @@ autocmd FileType sh inoremap ,ca )<Space><++><Space>;;<CR><++><Esc>?)<CR>
 " MISC config {{{
 " select all
 map <Leader>sa ggVG
-" w!! to sudo & write a file
-cmap w!! w !sudo tee >/dev/null %
 " Quickly close the current window
 nnoremap <leader>q :q<CR>
 " Quickly save the current file
 nnoremap <leader>w :w<CR>
+" Save a file as root (,W)
+noremap <leader>W :w !sudo tee % > /dev/null<CR>
 " y$ -> Y Make Y behave like other capitals
 map Y y$
 " 命令行模式增强，ctrl - a到行首， -e 到行尾
@@ -308,3 +310,4 @@ cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 let g:rainbow_active = 1  "set to 0 if you want to enable it later via :RainbowToggle
 " }}}
+
