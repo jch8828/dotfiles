@@ -1,8 +1,7 @@
 set nocompatible
 filetype off   " Helps force plugins to load correctly, turn back on below
 
-" vim-plug {{{
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.vim/plugged')  " vim-plug {{{
 
 " Functionalities
 Plug 'mhinz/vim-startify'
@@ -30,12 +29,7 @@ Plug 'ryanoasis/vim-devicons'  " Always load the vim-devicons as the very last o
 call plug#end()
 " }}}
 
-let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
-
-" GENERAL {{{
-filetype plugin indent on      " load filetype-specific indent files
-
-let mapleader=","
+let mapleader=","  " GENERAL {{{
 inoremap jj  <Esc>
 nmap ; :
 
@@ -45,8 +39,8 @@ set termguicolors
 colorscheme codedark
 
 " Other Configurations
-filetype plugin indent on
-set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
+filetype plugin indent on      " load filetype-specific indent files
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent smartindent
 set incsearch ignorecase smartcase hlsearch
 set ruler laststatus=2 showcmd showmode
 set list listchars=trail:»,tab:»-
@@ -57,15 +51,14 @@ set number relativenumber
 set title
 
 set cursorline          " highlight current line
+set matchpairs+=<:>     " use % to jump between pairs
 set showmatch           " highlight matching [{()}]
+set wildmenu            " visual autocomplete for command menu
 set ttyfast             " should make scrolling faster
 set lazyredraw          " redraw only when we need to.
+set hidden              " hide buffer when it is abandoned
 
-" Autocompletion
 set backspace=indent,eol,start
-set wildmenu            " visual autocomplete for command menu
-set matchpairs+=<:>     " use % to jump between pairs
-
 set splitbelow splitright   " Fix splitting
 set clipboard+=unnamedplus  " Use system clipboard
 
@@ -73,9 +66,12 @@ set clipboard+=unnamedplus  " Use system clipboard
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
 nnoremap <leader>ez :vsp ~/.zshrc<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
+autocmd! bufwritepost .vimrc source %
+
 
 " turn off search highlight
 nnoremap <leader><space> :set hlsearch!<CR>
+nnoremap <c-l>  :set hlsearch!<CR>
 " }}}
 
 " NERDTree {{{
@@ -84,6 +80,7 @@ map <leader>nb :NERDTreeFromBookmark<Space>
 map <leader>nf :NERDTreeFind<cr>
 vmap ++ <plug>NERDCommenterToggle
 nmap ++ <plug>NERDCommenterToggle
+let g:NERDSpaceDelims=1
 
 " Close if only NERDTree is open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -154,6 +151,7 @@ set updatetime=300
 
 " Some servers have issues with backup files, see #649
 set nobackup
+set noswapfile
 set nowritebackup
 
 " don't give |ins-completion-menu| messages.
@@ -254,15 +252,7 @@ map <leader>g :Goyo<CR>
 autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
 
 " Enable spell checking, o for othography
-map <leader>s :setlocal spell! spelllang=en_us<CR>
-
-" Enable Disable Auto Indent
-map <leader>i :setlocal autoindent<CR>
-map <leader>I :setlocal noautoindent<CR>
-
-" Compile and open output
-map <leader>r :w! \| !comp <c-r>%<CR><CR>
-map <leader>o :!opout <c-r>%<CR><CR>
+map <leader>ss :setlocal spell! spelllang=en_us<CR>
 
 " Shortcutting split navigation
 map <C-h> <C-w>h
@@ -288,6 +278,8 @@ augroup FileTypeSpecificAutocommands
   autocmd FileType sh setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
   autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
   autocmd FileType journal setlocal shiftwidth=2 tabstop=2 softtabstop=2
+  autocmd FileType python setlocal tabstop=4 shiftwidth=4 expandtab ai
+  autocmd FileType make setlocal noexpandtab shiftwidth=8 softtabstop=0
 augroup END
 
 " shell
@@ -298,3 +290,21 @@ autocmd FileType sh inoremap ,ei elif<Space>[<Space>];<Space>then<CR><++><CR><Es
 autocmd FileType sh inoremap ,sw case<Space>""<Space>in<CR><++>)<Space><++><Space>;;<CR><++><CR>esac<CR><CR><++><Esc>?"<CR>i
 autocmd FileType sh inoremap ,ca )<Space><++><Space>;;<CR><++><Esc>?)<CR>
 
+" MISC config {{{
+" select all
+map <Leader>sa ggVG
+" w!! to sudo & write a file
+cmap w!! w !sudo tee >/dev/null %
+" Quickly close the current window
+nnoremap <leader>q :q<CR>
+" Quickly save the current file
+nnoremap <leader>w :w<CR>
+" y$ -> Y Make Y behave like other capitals
+map Y y$
+" 命令行模式增强，ctrl - a到行首， -e 到行尾
+cnoremap <C-j> <t_kd>
+cnoremap <C-k> <t_ku>
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+let g:rainbow_active = 1  "set to 0 if you want to enable it later via :RainbowToggle
+" }}}
