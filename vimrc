@@ -6,13 +6,11 @@ call plug#begin('~/.vim/plugged')  " vim-plug {{{
 " Functionalities
 Plug 'mhinz/vim-startify'
 Plug 'itchyny/lightline.vim'
-Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'junegunn/goyo.vim'
-" Code Completion
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Fuzzy file search
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -24,7 +22,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'luochen1990/rainbow'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'tomasiser/vim-code-dark'
-Plug 'ryanoasis/vim-devicons'  " Always load the vim-devicons as the very last one
+Plug 'ryanoasis/vim-devicons'  " Icons for file formats, always load last
 
 call plug#end()
 " }}}
@@ -36,20 +34,20 @@ nmap ; :
 " Basic settings
 syntax on
 set termguicolors
+set background=dark
 colorscheme codedark
 
 " Other Configurations
 filetype plugin indent on      " load filetype-specific indent files
-set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent smartindent
+set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab smarttab autoindent smartindent
 set incsearch ignorecase smartcase hlsearch
-set ruler laststatus=2 showcmd noshowmode  " If lightline/airline is enabled, don't show mode under it
+set ruler laststatus=2 showcmd noshowmode  " lightline/airline is enabled, no showmode
 set list listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set fillchars+=vert:\
-set wrap breakindent
+set nowrap breakindent
 set encoding=utf-8
 set number relativenumber
-set title  " Show the filename in the window titlebar
-
+set title               " Show the filename in the window titlebar
 set cursorline          " highlight current line
 set matchpairs+=<:>     " use % to jump between pairs
 set showmatch           " highlight matching [{()}]
@@ -57,18 +55,16 @@ set wildmenu            " visual autocomplete for command menu
 set ttyfast             " should make scrolling faster
 set lazyredraw          " redraw only when we need to.
 set hidden              " hide buffer when it is abandoned
-
 set backspace=indent,eol,start  " Allow backspace in insert mode
 set splitbelow splitright       " Fix splitting
 set clipboard+=unnamedplus      " Use system clipboard
-" Make it obvious where 80 characters is
-set colorcolumn=1,80,100
+set colorcolumn=1,80,100        " Make it obvious where 80 characters is
 
 " edit vimrc/zshrc and load vimrc bindings
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
 nnoremap <leader>ez :vsp ~/.zshrc<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
-autocmd! bufwritepost .vimrc source %
+" autocmd! bufwritepost .vimrc source %
 
 " turn off search highlight
 nnoremap <leader><space> :set hlsearch!<CR>
@@ -78,9 +74,6 @@ nnoremap <leader><space> :set hlsearch!<CR>
 map <leader>nn :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark<Space>
 map <leader>nf :NERDTreeFind<cr>
-vmap ++ <plug>NERDCommenterToggle
-nmap ++ <plug>NERDCommenterToggle
-let g:NERDSpaceDelims=1
 
 " Close if only NERDTree is open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -132,116 +125,6 @@ command! -bang -nargs=? -complete=dir Files
 command! Evals call fzf#run(fzf#wrap({'source': map(filter(map(reverse(range(histnr(':') - 1000, histnr(':'))), 'histget(":", v:val)'),'v:val =~ "^Eval "'), 'substitute(v:val, "^Eval ", "", "")'), 'sink': function('<sid>eval_handler')}))
 " }}}
 
-" coc {{{
-let g:coc_global_extensions = [
-  \ 'coc-snippets',
-  \ 'coc-pairs',
-  \ 'coc-tsserver',
-  \ 'coc-html',
-  \ 'coc-css',
-  \ 'coc-prettier',
-  \ 'coc-json',
-  \ 'coc-python'
-  \ ]
-
-" prettier command for coc
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-
-" From Coc Readme
-set updatetime=300
-
-" Some servers have issues with backup files, see #649
-set nobackup
-set noswapfile
-set nowritebackup
-
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
-
-" always show signcolumns
-set signcolumn=yes
-
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" Or use `complete_info` if your vim support it, like:
-" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Remap for rename current word
-nmap <rn> <Plug>(coc-rename)
-
-" Remap for format selected region
-xmap <leader>cf  <Plug>(coc-format-selected)
-nmap <leader>cf  <Plug>(coc-format-selected)
-
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Create mappings for function text object, requires document symbols feature of languageserver.
-xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap if <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
-
-" Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
-
-" Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" use `:OR` for organize import of current buffer
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-" Add status line support, for integration with other plugin, checkout `:h coc-status`
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-" }}}
-
 " Enable Disable colourizing
 map <leader>d :ColorizerAttachToBuffer<CR>
 map <leader>D :ColorizerDetachFromBuffer<CR>
@@ -272,6 +155,7 @@ noremap <leader><Tab> <Esc>/<++><Enter>"_c4l
 inoremap <leader><Tab> <Esc>/<++><Enter>"_c4l
 vnoremap <leader><Tab> <Esc>/<++><Enter>"_c4l
 
+map <leader>b i#!/bin/sh<CR><CR>
 augroup FileTypeSpecificAutocommands
   autocmd FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2
   autocmd FileType php setlocal tabstop=2 softtabstop=2 shiftwidth=2
@@ -281,15 +165,13 @@ augroup FileTypeSpecificAutocommands
   autocmd FileType journal setlocal shiftwidth=2 tabstop=2 softtabstop=2
   autocmd FileType python setlocal tabstop=4 shiftwidth=4 expandtab ai
   autocmd FileType make setlocal noexpandtab shiftwidth=8 softtabstop=0
+  " shell
+  autocmd FileType sh inoremap ,f ()<Space>{<CR><Tab><++><CR>}<CR><CR><++><Esc>?()<CR>
+  autocmd FileType sh inoremap ,i if<Space>[<Space>];<Space>then<CR><++><CR>fi<CR><CR><++><Esc>?];<CR>hi<Space>
+  autocmd FileType sh inoremap ,ei elif<Space>[<Space>];<Space>then<CR><++><CR><Esc>?];<CR>hi<Space>
+  autocmd FileType sh inoremap ,sw case<Space>""<Space>in<CR><++>)<Space><++><Space>;;<CR><++><CR>esac<CR><CR><++><Esc>?"<CR>i
+  autocmd FileType sh inoremap ,ca )<Space><++><Space>;;<CR><++><Esc>?)<CR>
 augroup END
-
-" shell
-map <leader>b i#!/bin/sh<CR><CR>
-autocmd FileType sh inoremap ,f ()<Space>{<CR><Tab><++><CR>}<CR><CR><++><Esc>?()<CR>
-autocmd FileType sh inoremap ,i if<Space>[<Space>];<Space>then<CR><++><CR>fi<CR><CR><++><Esc>?];<CR>hi<Space>
-autocmd FileType sh inoremap ,ei elif<Space>[<Space>];<Space>then<CR><++><CR><Esc>?];<CR>hi<Space>
-autocmd FileType sh inoremap ,sw case<Space>""<Space>in<CR><++>)<Space><++><Space>;;<CR><++><CR>esac<CR><CR><++><Esc>?"<CR>i
-autocmd FileType sh inoremap ,ca )<Space><++><Space>;;<CR><++><Esc>?)<CR>
 
 " MISC config {{{
 " Quickly close the current window
@@ -308,5 +190,9 @@ cnoremap <C-k> <t_ku>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 let g:rainbow_active = 1  "set to 0 if you want to enable it later via :RainbowToggle
+" NerdCommenter
+vmap ++ <plug>NERDCommenterToggle
+nmap ++ <plug>NERDCommenterToggle
+let g:NERDSpaceDelims=1
 " }}}
 
