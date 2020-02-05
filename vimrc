@@ -6,9 +6,9 @@ call plug#begin('~/.vim/plugged')  " vim-plug {{{
 " Functionalities
 Plug 'mhinz/vim-startify'
 Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-sensible'
 Plug 'scrooloose/nerdcommenter'
 Plug 'junegunn/goyo.vim'
 " Code Completion
@@ -72,7 +72,6 @@ autocmd! bufwritepost .vimrc source %
 
 " turn off search highlight
 nnoremap <leader><space> :set hlsearch!<CR>
-nnoremap <c-l>  :set hlsearch!<CR>
 " }}}
 
 " NERDTree {{{
@@ -293,14 +292,14 @@ autocmd FileType sh inoremap ,sw case<Space>""<Space>in<CR><++>)<Space><++><Spac
 autocmd FileType sh inoremap ,ca )<Space><++><Space>;;<CR><++><Esc>?)<CR>
 
 " MISC config {{{
-" select all
-map <Leader>sa ggVG
 " Quickly close the current window
 nnoremap <leader>q :q<CR>
 " Quickly save the current file
 nnoremap <leader>w :w<CR>
 " Save a file as root (,W)
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
+" select all
+map <Leader>sa ggVG
 " y$ -> Y Make Y behave like other capitals
 map Y y$
 " 命令行模式增强，ctrl - a到行首， -e 到行尾
