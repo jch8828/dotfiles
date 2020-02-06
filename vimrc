@@ -193,3 +193,4 @@ function! OpenTerminal()
   resize 10
 endfunction
 nnoremap <c-n> :call OpenTerminal()<CR>
+
