@@ -157,32 +157,39 @@ augroup END
 map <leader>b i#!/bin/sh<CR><CR>
 
 " 命令行模式增强，ctrl - a到行首， -e 到行尾
-cnoremap <c-j> <t_kd>
-cnoremap <c-k> <t_ku>
 cnoremap <c-a> <Home>
 cnoremap <c-e> <End>
-if has('nvim')
-  tnoremap <Esc> <C-\><C-n>
-  tnoremap <C-[> <Esc>
-  " Terminal mode:
-  tnoremap <c-h> <c-\><c-n><c-w>h
-  tnoremap <c-j> <c-\><c-n><c-w>j
-  tnoremap <c-k> <c-\><c-n><c-w>k
-  tnoremap <c-l> <c-\><c-n><c-w>l
-  " Insert mode:
-  inoremap <c-h> <Esc><c-w>h
-  inoremap <c-j> <Esc><c-w>j
-  inoremap <c-k> <Esc><c-w>k
-  inoremap <c-l> <Esc><c-w>l
-  " Visual mode:
-  vnoremap <c-h> <Esc><c-w>h
-  vnoremap <c-j> <Esc><c-w>j
-  vnoremap <c-k> <Esc><c-w>k
-  vnoremap <c-l> <Esc><c-w>l
-  " Normal mode:
-  nnoremap <c-h> <c-w>h
-  nnoremap <c-j> <c-w>j
-  nnoremap <c-k> <c-w>k
-  nnoremap <c-l> <c-w>l
-endif
 
+" use ctrl+hjkl to move between split/vsplit panels
+" Terminal mode:
+tnoremap <c-h> <c-\><c-n><c-w>h
+tnoremap <c-j> <c-\><c-n><c-w>j
+tnoremap <c-k> <c-\><c-n><c-w>k
+tnoremap <c-l> <c-\><c-n><c-w>l
+" Insert mode:
+inoremap <c-h> <Esc><c-w>h
+inoremap <c-j> <Esc><c-w>j
+inoremap <c-k> <Esc><c-w>k
+inoremap <c-l> <Esc><c-w>l
+" Visual mode:
+vnoremap <c-h> <Esc><c-w>h
+vnoremap <c-j> <Esc><c-w>j
+vnoremap <c-k> <Esc><c-w>k
+vnoremap <c-l> <Esc><c-w>l
+" Normal mode:
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+
+" turn terminal to normal mode with escape
+tnoremap <Esc> <C-\><C-n>
+tnoremap <C-[> <Esc>
+" start terminal in insert mode
+au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+" open terminal on ctrl+n
+function! OpenTerminal()
+  split term://bash
+  resize 10
+endfunction
+nnoremap <c-n> :call OpenTerminal()<CR>
