@@ -8,6 +8,7 @@ Plug 'mhinz/vim-startify'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
+Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'junegunn/goyo.vim'
@@ -30,8 +31,6 @@ call plug#end()
 let mapleader=","  " GENERAL {{{
 inoremap jj  <Esc>
 nmap ; :
-
-" Basic settings
 syntax on
 set termguicolors
 set background=dark
@@ -120,8 +119,6 @@ nnoremap <leader>fh :History<CR>
 " Optional
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-
-" Optional
 command! Evals call fzf#run(fzf#wrap({'source': map(filter(map(reverse(range(histnr(':') - 1000, histnr(':'))), 'histget(":", v:val)'),'v:val =~ "^Eval "'), 'substitute(v:val, "^Eval ", "", "")'), 'sink': function('<sid>eval_handler')}))
 " }}}
 
@@ -185,8 +182,6 @@ map <Leader>sa ggVG
 " y$ -> Y Make Y behave like other capitals
 map Y y$
 " 命令行模式增强，ctrl - a到行首， -e 到行尾
-cnoremap <C-j> <t_kd>
-cnoremap <C-k> <t_ku>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 let g:rainbow_active = 1  "set to 0 if you want to enable it later via :RainbowToggle
