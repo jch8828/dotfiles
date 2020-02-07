@@ -166,11 +166,6 @@ tnoremap <c-h> <c-\><c-n><c-w>h
 tnoremap <c-j> <c-\><c-n><c-w>j
 tnoremap <c-k> <c-\><c-n><c-w>k
 tnoremap <c-l> <c-\><c-n><c-w>l
-" Insert mode:
-inoremap <c-h> <Esc><c-w>h
-inoremap <c-j> <Esc><c-w>j
-inoremap <c-k> <Esc><c-w>k
-inoremap <c-l> <Esc><c-w>l
 " Visual mode:
 vnoremap <c-h> <Esc><c-w>h
 vnoremap <c-j> <Esc><c-w>j
