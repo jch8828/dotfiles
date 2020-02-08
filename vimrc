@@ -36,7 +36,7 @@ colorscheme codedark
 
 " Other Configurations
 filetype plugin indent on       " load filetype-specific indent files
-set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab smarttab
+set tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab smarttab
 set autoindent smartindent
 set incsearch ignorecase smartcase hlsearch
 " lightline/airline is enabled, no showmode
