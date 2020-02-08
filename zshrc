@@ -1,13 +1,15 @@
+screenfetch
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/r632622/.oh-my-zsh"
+export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="amuse"
 
 # Set list of themes to pick from when loading at random
@@ -24,10 +26,16 @@ ZSH_THEME="amuse"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE="true"
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS=true
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -70,56 +78,36 @@ plugins=(
   docker
   history
   jsontools
+  pyenv
   python
   sudo
   encode64
   kubectl
   osx
-  pip
+	pip
 )
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+bindkey -v
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-export EDITOR='nvim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
+alias zshrc="vi ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#alias hg='fc -El 0 | grep'
-alias a='alias'
-alias cdr="cd ~/Projects"
-alias cddoc="cd ~/Documents"
-alias cddl="cd ~/Downloads"
+alias vi=nvim
 alias c=code
-alias vst='vsplit_tab'
-alias st='split_tab'
-alias vimrc='${=EDITOR} ~/.vimrc'
-alias pip='pip --trusted-host pypi.org --trusted-host files.pythonhosted.org'
-alias  vi='nvim'
+alias cdp='cd ~/Projects'
+alias vimrc='vi ~/.vimrc'
+alias cdr='cd ~/Projects'
+alias a='alias'
 
-set -o vi
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
