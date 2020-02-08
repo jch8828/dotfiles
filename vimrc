@@ -58,7 +58,7 @@ set hidden                      " hide buffer when it is abandoned
 set backspace=indent,eol,start  " Allow backspace in insert mode
 set splitbelow splitright       " Fix splitting
 set clipboard+=unnamedplus      " Use system clipboard
-set colorcolumn=+1          " Make it obvious where 80 characters is
+set colorcolumn=+1              " Make it obvious where 80 characters is
 
 " Quickly close the current window
 nnoremap <leader>q :q<CR>
@@ -66,7 +66,7 @@ nnoremap <leader>q :q<CR>
 nnoremap <leader>w :w<CR>
 " Save a file as root (,W)
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
-" turn off search highlight
+" toggle search highlight
 nnoremap <leader><space> :set hlsearch!<CR>
 " Autoread file if changed outside vim/nvim
 set autoread
@@ -98,10 +98,9 @@ map <leader>nf :NERDTreeFind<cr>
 
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeMinimalUI = 1
-let g:NERDTreeIgnore = []
+let g:NERDTreeIgnore = ['^node_modules$']
 let g:NERDTreeStatusline = ''
 let g:NERDTreeGitStatusWithFlags = 1
-let g:NERDTreeIgnore = ['^node_modules$']
 
 " Close if only NERDTree is open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -191,4 +190,8 @@ function! OpenTerminal()
   resize 10
 endfunction
 nnoremap <c-n> :call OpenTerminal()<CR>
-
+"Resize window
+nnoremap <silent> <Leader>= :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+nnoremap <silent> <Leader>0 :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
+nnoremap <silent> <Leader>9 :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
