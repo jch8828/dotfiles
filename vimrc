@@ -2,26 +2,26 @@ set nocompatible
 filetype off   " Helps force plugins to load correctly, turn back on below
 
 call plug#begin('~/.vim/plugged')  "  vim-plugins {{{
-  " Functionalities
-  Plug 'mhinz/vim-startify'
-  Plug 'itchyny/lightline.vim'
-  Plug 'tpope/vim-surround'
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-unimpaired'
-  Plug 'tpope/vim-repeat'
-  Plug 'scrooloose/nerdcommenter'
-  Plug 'jiangmiao/auto-pairs'
-  Plug 'junegunn/goyo.vim'
-  " Dress up vim
-  Plug 'luochen1990/rainbow'
-  Plug 'norcalli/nvim-colorizer.lua'
-  Plug 'tomasiser/vim-code-dark'
-  " Fuzzy file search
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  Plug 'junegunn/fzf.vim'
-  " File Explorer with Icons
-  Plug 'scrooloose/nerdtree'
-  Plug 'ryanoasis/vim-devicons'  " Icons for file formats, always load last
+" Functionalities
+Plug 'mhinz/vim-startify'
+Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-repeat'
+Plug 'scrooloose/nerdcommenter'
+Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/goyo.vim'
+" Dress up vim
+Plug 'luochen1990/rainbow'
+Plug 'norcalli/nvim-colorizer.lua'
+Plug 'tomasiser/vim-code-dark'
+" Fuzzy file search
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+" File Explorer with Icons
+Plug 'scrooloose/nerdtree'
+Plug 'ryanoasis/vim-devicons'  " Icons for file formats, always load last
 call plug#end()  " }}}
 
 let mapleader=","  " GENERAL {{{
