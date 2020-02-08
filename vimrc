@@ -68,6 +68,9 @@ nnoremap <leader>w :w<CR>
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
 " turn off search highlight
 nnoremap <leader><space> :set hlsearch!<CR>
+" Autoread file if changed outside vim/nvim
+set autoread
+au FocusGained,BufEnter * checktime
 " select all
 map <Leader>sa ggVG
 " y$ -> Y Make Y behave like other capitals
