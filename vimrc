@@ -12,6 +12,8 @@ Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/goyo.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'machakann/vim-highlightedyank'
 " Dress up vim
 Plug 'luochen1990/rainbow'
 Plug 'norcalli/nvim-colorizer.lua'
@@ -69,7 +71,7 @@ noremap <leader>W :w !sudo tee % > /dev/null<CR>
 " toggle search highlight
 nnoremap <leader><space> :set hlsearch!<CR>
 " Autoread file if changed outside vim/nvim
-set autoread
+set autoread autowrite
 au FocusGained,BufEnter * checktime
 " select all
 map <Leader>sa ggVG
