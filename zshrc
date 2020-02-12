@@ -95,6 +95,7 @@ bindkey -v
 alias zshrc="vi ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vi=nvim
+alias vim=nvim
 alias c=code
 alias cdp='cd ~/Projects'
 alias vimrc='vi ~/.vimrc'

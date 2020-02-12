@@ -5,21 +5,21 @@ call plug#begin('~/.vim/plugged')  "  vim-plugins {{{
 " Functionalities
 Plug 'mhinz/vim-startify'
 Plug 'itchyny/lightline.vim'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-repeat'                          " repeat everything
+Plug 'tpope/vim-surround'                        " better surround commands
+Plug 'tpope/vim-unimpaired'                      " pairs of helpful commands
 Plug 'scrooloose/nerdcommenter'
 Plug 'jiangmiao/auto-pairs'
-Plug 'junegunn/goyo.vim'
+Plug 'junegunn/goyo.vim', {'on': 'Goyo'}         " distraction-free writing
 Plug 'airblade/vim-gitgutter'
 Plug 'machakann/vim-highlightedyank'
+Plug 'w0rp/ale', {'for': ['java', 'python']}     " async syntax checker
 " Dress up vim
 Plug 'luochen1990/rainbow'
 Plug 'norcalli/nvim-colorizer.lua'
-Plug 'tomasiser/vim-code-dark'
+Plug 'tomasiser/vim-code-dark'                   " colorscheme
 " Fuzzy file search
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', {'dir': '~/fzf', 'do': './install --all'}  " fuzzy search
 Plug 'junegunn/fzf.vim'
 " File Explorer with Icons
 Plug 'scrooloose/nerdtree'
@@ -38,7 +38,7 @@ colorscheme codedark
 
 " Other Configurations
 filetype plugin indent on       " load filetype-specific indent files
-set tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab smarttab
+set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab smarttab
 set autoindent smartindent
 set incsearch ignorecase smartcase hlsearch
 " lightline/airline is enabled, no showmode
@@ -130,9 +130,6 @@ command! Evals call fzf#run(fzf#wrap({'source': map(filter(map(reverse(range(his
 " }}}
 
 let g:rainbow_active = 1  " toggle later via :RainbowToggle
-" NerdCommenter
-vmap ++ <plug>NERDCommenterToggle
-nmap ++ <plug>NERDCommenterToggle
 let g:NERDSpaceDelims=1
 " toggle Goyo
 map <leader>g :Goyo<CR>
@@ -182,14 +179,13 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 
 " turn terminal to normal mode with escape
-tnoremap <Esc> <C-\><C-n>
-tnoremap <C-[> <Esc>
-" start terminal in insert mode
-au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+tnoremap <Esc><Esc> <C-\><C-n>
 " open terminal on ctrl+n
 function! OpenTerminal()
   split term://zsh
   resize 10
+  set nonumber norelativenumber
+  startinsert
 endfunction
 nnoremap <c-n> :call OpenTerminal()<CR>
 "Resize window

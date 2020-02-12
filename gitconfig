@@ -1,0 +1,35 @@
+[alias]
+	st = status
+	cm = commit -m
+	p = push
+	pr = pull --rebase
+	sh = stash
+	sp = stash pop
+	sa = stash apply
+	d = difftool
+	cp = cherry-pick
+	b = branch
+	show-files = "!f() { git diff-tree --no-commit-id --name-only -r $1; }; f"
+	show-diff = "!f() { git difftool $1^ $1; }; f"
+	lg = log --graph --pretty=format:\"%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%C(yellow)%d%Creset\" --abbrev-commit --date=relative
+[color]
+	ui = true
+[core]
+	editor = vim
+	autocrlf = false
+	excludesfile = ~/.gitignore
+[credential]
+	helper = cache
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[github]
+	user = jch8828
+[include]
+	path = ~/.gitconfig.local
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[mergetool]
+	prompt = false
