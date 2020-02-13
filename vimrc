@@ -50,6 +50,7 @@ set formatoptions+=j " Delete comment character when joining commented lines
 set nowrap breakindent
 set encoding=utf-8
 set number relativenumber
+set scrolloff=3
 set title                       " Show the filename in the window titlebar
 set cursorline                  " highlight current line
 set matchpairs+=<:>             " use % to jump between pairs
@@ -158,10 +159,10 @@ augroup FileTypeSpecificAutocommands
 augroup END
 map <leader>b i#!/bin/sh<CR><CR>
 
-" 命令行模式增强，ctrl - a到行首， -e 到行尾
 cnoremap <c-a> <Home>
 cnoremap <c-e> <End>
-
+inoremap <c-a> <Home>
+inoremap <c-e> <End>
 " use ctrl+hjkl to move between split/vsplit panels
 " Terminal mode:
 tnoremap <c-h> <c-\><c-n><c-w>h
@@ -194,3 +195,4 @@ nnoremap <silent> <Leader>= :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 nnoremap <silent> <Leader>0 :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
 nnoremap <silent> <Leader>9 :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
+
