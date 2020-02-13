@@ -17,7 +17,7 @@ Plug 'w0rp/ale', {'for': ['java', 'python']}     " async syntax checker
 " Dress up vim
 Plug 'luochen1990/rainbow'
 Plug 'norcalli/nvim-colorizer.lua'
-Plug 'tomasiser/vim-code-dark'                   " colorscheme
+Plug 'morhetz/gruvbox'                           " colorscheme
 " Fuzzy file search
 Plug 'junegunn/fzf', {'dir': '~/fzf', 'do': './install --all'}  " fuzzy search
 Plug 'junegunn/fzf.vim'
@@ -35,7 +35,7 @@ if (has("termguicolors"))
   set termguicolors
 endif
 set background=dark
-colorscheme codedark
+colorscheme gruvbox
 
 " Other Configurations
 filetype plugin indent on       " load filetype-specific indent files
