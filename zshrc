@@ -84,7 +84,7 @@ plugins=(
   encode64
   kubectl
   osx
-	pip
+  pip
 )
 
 source $ZSH/oh-my-zsh.sh
