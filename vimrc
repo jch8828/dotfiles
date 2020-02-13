@@ -14,6 +14,7 @@ Plug 'junegunn/goyo.vim', {'on': 'Goyo'}         " distraction-free writing
 Plug 'airblade/vim-gitgutter'
 Plug 'machakann/vim-highlightedyank'
 Plug 'w0rp/ale', {'for': ['java', 'python']}     " async syntax checker
+Plug 'Yggdroot/indentLine'
 " Dress up vim
 Plug 'luochen1990/rainbow'
 Plug 'norcalli/nvim-colorizer.lua'
@@ -44,7 +45,7 @@ set autoindent smartindent
 set incsearch ignorecase smartcase hlsearch
 " lightline/airline is enabled, no showmode
 set ruler laststatus=2 showcmd noshowmode
-set list listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_
+set listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set fillchars+=vert:\
 set formatoptions+=j " Delete comment character when joining commented lines
 set nowrap breakindent
@@ -195,4 +196,5 @@ nnoremap <silent> <Leader>= :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 nnoremap <silent> <Leader>0 :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
 nnoremap <silent> <Leader>9 :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 

@@ -33,6 +33,4 @@
 	conflictstyle = diff3
 [mergetool]
 	prompt = false
-[user]
-	name = Joe
-	email = chenjz@yahoo.com
+
