@@ -24,6 +24,7 @@ Plug 'junegunn/fzf.vim'
 " File Explorer with Icons
 Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'  " Icons for file formats, always load last
+
 call plug#end()  " }}}
 
 let mapleader=","  " GENERAL {{{
