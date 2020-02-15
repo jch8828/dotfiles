@@ -13,12 +13,13 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}         " distraction-free writing
 Plug 'airblade/vim-gitgutter'
 Plug 'machakann/vim-highlightedyank'
-Plug 'w0rp/ale', {'for': ['java', 'python']}     " async syntax checker
-Plug 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine'                       " indentation guide
+Plug 'tmhedberg/SimpylFold'
 " Dress up vim
 Plug 'luochen1990/rainbow'
 Plug 'norcalli/nvim-colorizer.lua'
-Plug 'morhetz/gruvbox'                           " colorscheme
+Plug 'flazz/vim-colorschemes'                    " colorscheme
+Plug 'joshdick/onedark.vim'
 " Fuzzy file search
 Plug 'junegunn/fzf', {'dir': '~/fzf', 'do': './install --all'}  " fuzzy search
 Plug 'junegunn/fzf.vim'
@@ -36,7 +37,8 @@ if (has("termguicolors"))
   set termguicolors
 endif
 set background=dark
-colorscheme gruvbox
+colorscheme onedark
+" colorscheme gruvbox
 
 " Other Configurations
 filetype plugin indent on       " load filetype-specific indent files
@@ -64,6 +66,10 @@ set backspace=indent,eol,start  " Allow backspace in insert mode
 set splitbelow splitright       " Fix splitting
 set clipboard+=unnamedplus      " Use system clipboard
 set colorcolumn=+1              " Make it obvious where 80 characters is
+set visualbell                  " don't beep
+set noerrorbells                " don't beep
+set nobackup
+set noswapfile
 
 " Quickly close the current window
 nnoremap <leader>q :q<CR>
@@ -74,6 +80,9 @@ noremap <leader>W :w !sudo tee % > /dev/null<CR>
 " toggle search highlight
 nnoremap <leader><space> :set hlsearch!<CR>
 " Autoread file if changed outside vim/nvim
+" jump to wrapped lines
+nnoremap j gj
+nnoremap k gk
 set autoread autowrite
 au FocusGained,BufEnter * checktime
 " select all
@@ -91,9 +100,8 @@ autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
 
 " edit vimrc/zshrc and load vimrc bindings
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
-nnoremap <leader>ez :vsp ~/.zshrc<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
-" autocmd! bufwritepost .vimrc source %
+nnoremap <leader>ez :vsp ~/.zshrc<CR>
 " }}}
 
 " NERDTree {{{
@@ -103,7 +111,7 @@ map <leader>nf :NERDTreeFind<cr>
 
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeMinimalUI = 1
-let g:NERDTreeIgnore = ['^node_modules$']
+let g:NERDTreeIgnore = ['^node_modules$','\.pyc$', '\~$']
 let g:NERDTreeStatusline = ''
 let g:NERDTreeGitStatusWithFlags = 1
 
@@ -197,5 +205,6 @@ nnoremap <silent> <Leader>= :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 nnoremap <silent> <Leader>0 :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
 nnoremap <silent> <Leader>9 :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
-let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+" Exit terminal with pressing aditional key
+au TermClose * call feedkeys("i")
 
