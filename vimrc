@@ -145,6 +145,7 @@ vnoremap <leader><Tab> <Esc>/<++><Enter>"_c4l
 augroup FileTypeSpecificAutocommands
   autocmd FileType go setlocal shiftwidth=4 tabstop=4 softtabstop=4
   autocmd FileType sh setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+  autocmd FileType java setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
   autocmd FileType python setlocal tabstop=4 shiftwidth=4 expandtab ai
   autocmd FileType make setlocal noexpandtab shiftwidth=8 softtabstop=0
   autocmd FileType php setlocal tabstop=2 softtabstop=2 shiftwidth=2
