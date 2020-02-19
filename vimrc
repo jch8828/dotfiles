@@ -92,7 +92,7 @@ au FocusGained,BufEnter * checktime
 map <Leader>sa ggVG
 " y$ -> Y Make Y behave like other capitals
 map Y y$
-" Enable spell checking, o for othography
+" Enable spell checking
 map <leader>ss :setlocal spell! spelllang=en_us<CR>
 " Alias replace all to S
 nnoremap S :%s//g<Left><Left>
@@ -102,8 +102,31 @@ autocmd BufWritePre * %s/\s\+$//e
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>ez :vsp ~/.zshrc<CR>
+" Reload vim config automatically
+autocmd BufWritePost $VIM_PATH/{*.vim,*.yaml,.vimrc} nested
+	\ source $MYVIMRC | redraw
 map <leader>g :Goyo<CR>
-" }}}
+cnoremap <c-a> <Home>
+cnoremap <c-e> <End>
+inoremap <c-a> <Home>
+inoremap <c-e> <End>
+" use ctrl+hjkl to move between split/vsplit panels
+" Terminal mode:
+tnoremap <c-h> <c-\><c-n><c-w>h
+tnoremap <c-j> <c-\><c-n><c-w>j
+tnoremap <c-k> <c-\><c-n><c-w>k
+tnoremap <c-l> <c-\><c-n><c-w>l
+" Visual mode:
+vnoremap <c-h> <Esc><c-w>h
+vnoremap <c-j> <Esc><c-w>j
+vnoremap <c-k> <Esc><c-w>k
+vnoremap <c-l> <Esc><c-w>l
+" Normal mode:
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+ }}}
 
 " NERDTree {{{
 map <leader>nn :NERDTreeToggle<cr>
@@ -132,13 +155,42 @@ let g:fzf_action = {
   \ 'ctrl-v': 'vsplit'
   \}
 
-let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
-let $FZF_DEFAULT_OPTS="--preview '[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || highlight -O ansi -l {} || coderay {} || rougify {} || cat {}) 2> /dev/null'"
+let g:fzf_commits_log_options = '--graph --color=always
+  \ --format="%C(yellow)%h%C(red)%d%C(reset)
+  \ - %C(bold green)(%ar)%C(reset) %s %C(blue)<%an>%C(reset)"'
 
-" Optional
-command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-command! Evals call fzf#run(fzf#wrap({'source': map(filter(map(reverse(range(histnr(':') - 1000, histnr(':'))), 'histget(":", v:val)'),'v:val =~ "^Eval "'), 'substitute(v:val, "^Eval ", "", "")'), 'sink': function('<sid>eval_handler')}))
+"let $FZF_DEFAULT_COMMAND = 'ag --hidden -l -g ""'
+" ripgrep
+if executable('rg')
+  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+  set grepprg=rg\ --vimgrep
+  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+endif
+
+let $FZF_DEFAULT_OPTS='--layout=reverse'
+let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+
+function! FloatingFZF()
+  let buf = nvim_create_buf(v:false, v:true)
+  call setbufvar(buf, 'number', 'no')
+
+  let height = float2nr(&lines/2)
+  let width = float2nr(&columns - (&columns * 2 / 10))
+  "let width = &columns
+  let row = float2nr(&lines / 3)
+  let col = float2nr((&columns - width) / 3)
+
+  let opts = {
+        \ 'relative': 'editor',
+        \ 'row': row,
+        \ 'col': col,
+        \ 'width': width,
+        \ 'height':height,
+        \ }
+  let win =  nvim_open_win(buf, v:true, opts)
+  call setwinvar(win, '&number', 0)
+  call setwinvar(win, '&relativenumber', 0)
+endfunction
 " }}}
 
 augroup FileTypeSpecificAutocommands
@@ -152,27 +204,6 @@ augroup FileTypeSpecificAutocommands
   autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
   autocmd FileType journal setlocal shiftwidth=2 tabstop=2 softtabstop=2
 augroup END
-
-cnoremap <c-a> <Home>
-cnoremap <c-e> <End>
-inoremap <c-a> <Home>
-inoremap <c-e> <End>
-" use ctrl+hjkl to move between split/vsplit panels
-" Terminal mode:
-tnoremap <c-h> <c-\><c-n><c-w>h
-tnoremap <c-j> <c-\><c-n><c-w>j
-tnoremap <c-k> <c-\><c-n><c-w>k
-tnoremap <c-l> <c-\><c-n><c-w>l
-" Visual mode:
-vnoremap <c-h> <Esc><c-w>h
-vnoremap <c-j> <Esc><c-w>j
-vnoremap <c-k> <Esc><c-w>k
-vnoremap <c-l> <Esc><c-w>l
-" Normal mode:
-nnoremap <c-h> <c-w>h
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-l> <c-w>l
 
 " Terminal config {{{
 " turn terminal to normal mode with escape
