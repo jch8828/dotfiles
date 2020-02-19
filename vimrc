@@ -9,6 +9,7 @@ Plug 'tpope/vim-repeat'                          " repeat everything
 Plug 'tpope/vim-surround'                        " better surround commands
 Plug 'tpope/vim-unimpaired'                      " pairs of helpful commands
 Plug 'scrooloose/nerdcommenter'
+let g:NERDSpaceDelims=1
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}         " distraction-free writing
 Plug 'airblade/vim-gitgutter'
@@ -17,6 +18,7 @@ Plug 'Yggdroot/indentLine'                       " indentation guide
 Plug 'tmhedberg/SimpylFold'
 " Dress up vim
 Plug 'luochen1990/rainbow'
+let g:rainbow_active = 1  " toggle later via :RainbowToggle
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'flazz/vim-colorschemes'                    " colorscheme
 Plug 'joshdick/onedark.vim'
@@ -29,18 +31,13 @@ Plug 'ryanoasis/vim-devicons'  " Icons for file formats, always load last
 
 call plug#end()  " }}}
 
-let mapleader=","  " GENERAL {{{
-inoremap jj  <Esc>
-nmap ; :
+" GENERAL {{{
+set termguicolors
 syntax enable
-if (has("termguicolors"))
-  set termguicolors
-endif
 set background=dark
-colorscheme onedark
-" colorscheme gruvbox
+colorscheme gruvbox
+" colorscheme onedark
 
-" Other Configurations
 filetype plugin indent on       " load filetype-specific indent files
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab smarttab
 set autoindent smartindent
@@ -71,18 +68,24 @@ set noerrorbells                " don't beep
 set nobackup
 set noswapfile
 
-" Quickly close the current window
+let mapleader=","
+noremap ; :
+inoremap jj <Esc>
 nnoremap <leader>q :q<CR>
-" Quickly save the current file
 nnoremap <leader>w :w<CR>
 " Save a file as root (,W)
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
 " toggle search highlight
-nnoremap <leader><space> :set hlsearch!<CR>
-" Autoread file if changed outside vim/nvim
+nnoremap <space> :set hlsearch!<CR>
 " jump to wrapped lines
 nnoremap j gj
 nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+" Visual shifting (does not exit Visual mode)
+vnoremap < <gv
+vnoremap > >gv
+" Autoread file if changed outside vim/nvim
 set autoread autowrite
 au FocusGained,BufEnter * checktime
 " select all
@@ -95,13 +98,11 @@ map <leader>ss :setlocal spell! spelllang=en_us<CR>
 nnoremap S :%s//g<Left><Left>
 " Remove trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
-" Enable and disable auto comment
-autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
-
 " edit vimrc/zshrc and load vimrc bindings
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>ez :vsp ~/.zshrc<CR>
+map <leader>g :Goyo<CR>
 " }}}
 
 " NERDTree {{{
@@ -140,16 +141,6 @@ command! -bang -nargs=? -complete=dir Files
 command! Evals call fzf#run(fzf#wrap({'source': map(filter(map(reverse(range(histnr(':') - 1000, histnr(':'))), 'histget(":", v:val)'),'v:val =~ "^Eval "'), 'substitute(v:val, "^Eval ", "", "")'), 'sink': function('<sid>eval_handler')}))
 " }}}
 
-let g:rainbow_active = 1  " toggle later via :RainbowToggle
-let g:NERDSpaceDelims=1
-" toggle Goyo
-map <leader>g :Goyo<CR>
-
-" Guide navigation
-noremap <leader><Tab> <Esc>/<++><Enter>"_c4l
-inoremap <leader><Tab> <Esc>/<++><Enter>"_c4l
-vnoremap <leader><Tab> <Esc>/<++><Enter>"_c4l
-
 augroup FileTypeSpecificAutocommands
   autocmd FileType go setlocal shiftwidth=4 tabstop=4 softtabstop=4
   autocmd FileType sh setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
@@ -160,14 +151,7 @@ augroup FileTypeSpecificAutocommands
   autocmd FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2
   autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
   autocmd FileType journal setlocal shiftwidth=2 tabstop=2 softtabstop=2
-  " shell code template
-  autocmd FileType sh inoremap ,f ()<Space>{<CR><Tab><++><CR>}<CR><CR><++><Esc>?()<CR>
-  autocmd FileType sh inoremap ,i if<Space>[<Space>];<Space>then<CR><++><CR>fi<CR><CR><++><Esc>?];<CR>hi<Space>
-  autocmd FileType sh inoremap ,ei elif<Space>[<Space>];<Space>then<CR><++><CR><Esc>?];<CR>hi<Space>
-  autocmd FileType sh inoremap ,sw case<Space>""<Space>in<CR><++>)<Space><++><Space>;;<CR><++><CR>esac<CR><CR><++><Esc>?"<CR>i
-  autocmd FileType sh inoremap ,ca )<Space><++><Space>;;<CR><++><Esc>?)<CR>
 augroup END
-map <leader>b i#!/bin/sh<CR><CR>
 
 cnoremap <c-a> <Home>
 cnoremap <c-e> <End>
@@ -190,11 +174,12 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 
+" Terminal config {{{
 " turn terminal to normal mode with escape
 tnoremap <Esc><Esc> <C-\><C-n>
 " open terminal on ctrl+n
 function! OpenTerminal()
-  split term://zsh
+  split term://$SHELL
   resize 10
   set nonumber norelativenumber
   startinsert
@@ -205,6 +190,5 @@ nnoremap <silent> <Leader>= :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 nnoremap <silent> <Leader>0 :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
 nnoremap <silent> <Leader>9 :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
-" Exit terminal with pressing aditional key
-au TermClose * call feedkeys("i")
+" }}}
 
