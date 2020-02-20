@@ -2,30 +2,31 @@ set nocompatible
 filetype off   " Helps force plugins to load correctly, turn back on below
 
 call plug#begin('~/.vim/plugged')  "  vim-plugins {{{
-" Functionalities
 Plug 'mhinz/vim-startify'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-repeat'                          " repeat everything
 Plug 'tpope/vim-surround'                        " better surround commands
 Plug 'tpope/vim-unimpaired'                      " pairs of helpful commands
-Plug 'scrooloose/nerdcommenter'
-let g:NERDSpaceDelims=1
+Plug 'tpope/vim-commentary'                      " gcc/gc to toggle comment
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}         " distraction-free writing
 Plug 'airblade/vim-gitgutter'
 Plug 'machakann/vim-highlightedyank'
 Plug 'Yggdroot/indentLine'                       " indentation guide
 Plug 'tmhedberg/SimpylFold'
-" Dress up vim
+Plug 'liuchengxu/vista.vim'                      " tag list supporting lsp
 Plug 'luochen1990/rainbow'
-let g:rainbow_active = 1  " toggle later via :RainbowToggle
+let g:rainbow_active = 1                " toggle later via :RainbowToggle
+" Color shemes
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'flazz/vim-colorschemes'                    " colorscheme
 Plug 'joshdick/onedark.vim'
+Plug 'altercation/vim-colors-solarized'
 " Fuzzy file search
 Plug 'junegunn/fzf', {'dir': '~/fzf', 'do': './install --all'}  " fuzzy search
 Plug 'junegunn/fzf.vim'
 " File Explorer with Icons
+Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'  " Icons for file formats, always load last
 
@@ -35,8 +36,12 @@ call plug#end()  " }}}
 set termguicolors
 syntax enable
 set background=dark
-colorscheme gruvbox
+" colorscheme gruvbox
+colorscheme molokai
+" colorscheme solarized
 " colorscheme onedark
+" Correct the commandline autocomplete backgroud color
+highlight Pmenu ctermfg=15 ctermbg=0 guifg=#2aa198 guibg=#002b36
 
 filetype plugin indent on       " load filetype-specific indent files
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab smarttab
@@ -103,7 +108,7 @@ nnoremap <leader>ev :vsp $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>ez :vsp ~/.zshrc<CR>
 " Reload vim config automatically
-autocmd BufWritePost $VIM_PATH/{*.vim,*.yaml,.vimrc} nested
+autocmd BufWritePost {*.vim,*vimrc} nested
 	\ source $MYVIMRC | redraw
 map <leader>g :Goyo<CR>
 cnoremap <c-a> <Home>
@@ -129,7 +134,8 @@ nnoremap <c-l> <c-w>l
 " }}}
 
 " NERDTree {{{
-map <leader>nn :NERDTreeToggle<cr>
+" Open nerd tree at the current file or close nerd tree if pressed again.
+nnoremap <silent> <expr> <Leader>nn g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
 map <leader>nb :NERDTreeFromBookmark<Space>
 map <leader>nf :NERDTreeFind<cr>
 
@@ -138,6 +144,8 @@ let g:NERDTreeMinimalUI = 1
 let g:NERDTreeIgnore = ['^node_modules$','\.pyc$', '\~$']
 let g:NERDTreeStatusline = ''
 let g:NERDTreeGitStatusWithFlags = 1
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeDirArrows = 1
 
 " Close if only NERDTree is open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -217,9 +225,21 @@ function! OpenTerminal()
 endfunction
 nnoremap <c-n> :call OpenTerminal()<CR>
 "Resize window
-nnoremap <silent> <Leader>= :exe "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
-nnoremap <silent> <Leader>0 :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
-nnoremap <silent> <Leader>9 :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
+noremap <silent> <C-S-Left> :vertical resize -5<CR>
+noremap <silent> <C-S-Right> :vertical resize +5<CR>
+noremap <silent> <C-S-Up> :resize +5<CR>
+noremap <silent> <C-S-Down> :resize -5<CR>
 " }}}
+
+nmap <F8> :Vista!!<CR>
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+let g:vista#renderer#enable_icon = 1
+let g:vista_default_executive = 'ctags'
+let g:vista_fzf_preview = ['right:50%']
+let g:vista_executive_for = {
+  \ 'go': 'ctags',
+  \ 'javascript': 'coc',
+  \ 'javascript.jsx': 'coc',
+  \ 'python': 'ctags',
+  \ }
 
