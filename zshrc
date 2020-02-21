@@ -1,5 +1,3 @@
-screenfetch
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -95,13 +93,18 @@ bindkey -v
 # Example aliases
 alias zshrc="vi ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vi=nvim
-alias vim=nvim
-alias c=code
-alias cdp='cd ~/Projects'
-alias vimrc='vi ~/.vimrc'
-alias cdr='cd ~/Projects'
+#alias hg='fc -El 0 | grep'
 alias a='alias'
+alias cdr="cd ~/Projects"
+alias cddoc="cd ~/Documents"
+alias cddl="cd ~/Downloads"
+alias c=code
+alias vimrc='${=EDITOR} ~/.vimrc'
+alias pip='pip --trusted-host pypi.org --trusted-host files.pythonhosted.org'
+alias vi='nvim'
+alias vim='nvim'
+
+export PATH=/usr/local/Cellar/python/3.7.4_1/libexec/bin:$HOME/bin:$PATH
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
@@ -128,3 +131,6 @@ f() {
 	export PYTHONIOENCODING=$TF_PYTHONIOENCODING;
 	test -n "$TF_CMD" && print -s $TF_CMD
 }
+
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
