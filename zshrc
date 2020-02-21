@@ -99,7 +99,7 @@ alias cdr="cd ~/Projects"
 alias cddoc="cd ~/Documents"
 alias cddl="cd ~/Downloads"
 alias c=code
-alias vimrc='${=EDITOR} ~/.vimrc'
+alias vimrc='vi ~/.vimrc'
 alias pip='pip --trusted-host pypi.org --trusted-host files.pythonhosted.org'
 alias vi='nvim'
 alias vim='nvim'
