@@ -104,8 +104,6 @@ alias pip='pip --trusted-host pypi.org --trusted-host files.pythonhosted.org'
 alias vi='nvim'
 alias vim='nvim'
 
-export PATH=/usr/local/Cellar/python/3.7.4_1/libexec/bin:$HOME/bin:$PATH
-
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
