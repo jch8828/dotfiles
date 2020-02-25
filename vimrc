@@ -45,7 +45,7 @@ colorscheme molokai
 " highlight Pmenu ctermfg=15 ctermbg=0 guifg=#2aa198 guibg=#002b36
 
 set path+=**          " enable file fuzzy search
-set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab smarttab
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab
 set autoindent smartindent
 set incsearch ignorecase smartcase nohlsearch
 " lightline/airline is enabled, no showmode
@@ -74,7 +74,8 @@ set noerrorbells                " don't beep
 set nobackup
 set noswapfile
 
-let mapleader=","
+let mapleader=" "
+set ttimeoutlen=150
 noremap ; :
 inoremap jj <Esc>
 nnoremap <leader>q :q<CR>
@@ -82,7 +83,7 @@ nnoremap <leader>w :w<CR>
 " Save a file as root (,W)
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
 " toggle search highlight
-nnoremap <space> :set hlsearch!<CR>
+nnoremap <leader><leader> :set hlsearch!<CR>
 " jump to wrapped lines
 nnoremap j gj
 nnoremap k gk
