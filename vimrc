@@ -206,9 +206,10 @@ endfunction
 augroup FileTypeSpecificAutocommands
   autocmd FileType go setlocal shiftwidth=4 tabstop=4 softtabstop=4
   autocmd FileType sh setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+  autocmd FileType yaml setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
   autocmd FileType java setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
   autocmd FileType python setlocal tabstop=4 shiftwidth=4 expandtab ai
-  autocmd FileType make setlocal noexpandtab shiftwidth=8 softtabstop=0
+  autocmd FileType make setlocal shiftwidth=2 softtabstop=0 noexpandtab
   autocmd FileType php setlocal tabstop=2 softtabstop=2 shiftwidth=2
   autocmd FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2
   autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
