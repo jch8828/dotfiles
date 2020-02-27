@@ -17,7 +17,7 @@ Plug 'tmhedberg/SimpylFold'
 Plug 'liuchengxu/vista.vim'                      " tag list supporting lsp
 Plug 'luochen1990/rainbow'
 let g:rainbow_active = 1                " toggle later via :RainbowToggle
-" Color shemes
+" Color schemes
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'flazz/vim-colorschemes'                    " colorscheme
 Plug 'joshdick/onedark.vim'
