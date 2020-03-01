@@ -119,20 +119,20 @@ inoremap <c-a> <Home>
 inoremap <c-e> <End>
 " use ctrl+hjkl to move between split/vsplit panels
 " Terminal mode:
-tnoremap <leader>h <c-\><c-n><c-w>h
-tnoremap <leader>j <c-\><c-n><c-w>j
-tnoremap <leader>k <c-\><c-n><c-w>k
-tnoremap <leader>l <c-\><c-n><c-w>l
+tnoremap <c-h> <c-\><c-n><c-w>h
+tnoremap <c-j> <c-\><c-n><c-w>j
+tnoremap <c-k> <c-\><c-n><c-w>k
+tnoremap <c-l> <c-\><c-n><c-w>l
 " Visual mode:
-vnoremap <leader>h <Esc><c-w>h
-vnoremap <leader>j <Esc><c-w>j
-vnoremap <leader>k <Esc><c-w>k
-vnoremap <leader>l <Esc><c-w>l
+vnoremap <c-h> <Esc><c-w>h
+vnoremap <c-j> <Esc><c-w>j
+vnoremap <c-k> <Esc><c-w>k
+vnoremap <c-l> <Esc><c-w>l
 " Normal mode:
-nnoremap <leader>h <c-w>h
-nnoremap <leader>j <c-w>j
-nnoremap <leader>k <c-w>k
-nnoremap <leader>l <c-w>l
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
 " }}}
 
 " NERDTree {{{
@@ -226,15 +226,15 @@ function! OpenTerminal()
   set nonumber norelativenumber
   startinsert
 endfunction
-nnoremap <c-n> :call OpenTerminal()<CR>
+nnoremap <c-t> :call OpenTerminal()<CR>
 "Resize window
-noremap <silent> <leader><leader>h :vertical resize -5<CR>
-noremap <silent> <leader><leader>j :resize +5<CR>
-noremap <silent> <leader><leader>k :resize -5<CR>
-noremap <silent> <leader><leader>l :vertical resize +5<CR>
+noremap <silent> <C-S-Left> :vertical resize -5<CR>
+noremap <silent> <C-S-Right> :vertical resize +5<CR>
+noremap <silent> <C-S-Up> :resize +5<CR>
+noremap <silent> <C-S-Down> :resize -5<CR>
 " }}}
 
-nmap <F8> :Vista!!<CR>
+noremap <silent>T :Vista!!<CR>
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 let g:vista#renderer#enable_icon = 1
 let g:vista_default_executive = 'ctags'
