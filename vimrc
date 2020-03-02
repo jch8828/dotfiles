@@ -46,7 +46,7 @@ colorscheme onedark
 " highlight Pmenu ctermfg=15 ctermbg=0 guifg=#2aa198 guibg=#002b36
 
 set path+=**          " enable file fuzzy search
-set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab
+set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab
 set autoindent smartindent
 set incsearch ignorecase smartcase nohlsearch
 " lightline/airline is enabled, no showmode
@@ -206,15 +206,8 @@ endfunction
 
 augroup FileTypeSpecificAutocommands
   autocmd FileType go setlocal shiftwidth=4 tabstop=4 softtabstop=4
-  autocmd FileType sh setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-  autocmd FileType yaml setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-  autocmd FileType java setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-  autocmd FileType python setlocal tabstop=4 shiftwidth=4 expandtab ai
-  autocmd FileType make setlocal shiftwidth=2 softtabstop=0 noexpandtab
-  autocmd FileType php setlocal tabstop=2 softtabstop=2 shiftwidth=2
-  autocmd FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2
-  autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
-  autocmd FileType journal setlocal shiftwidth=2 tabstop=2 softtabstop=2
+  autocmd FileType python setlocal tabstop=4 shiftwidth=4
+  autocmd FileType make setlocal softtabstop=0 noexpandtab
 augroup END
 
 " Terminal config {{{
