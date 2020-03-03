@@ -175,7 +175,11 @@ let g:fzf_commits_log_options = '--graph --color=always
 if executable('rg')
   let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
   set grepprg=rg\ --vimgrep
-  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+	let g:rg_command = '
+		\ rg --column --line-number --no-heading --fixed-strings --ignore-case
+    \ --no-ignore --hidden --follow --color "always"
+		\ -g "!{.git,node_modules,vendor}/*" '
+	command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
 endif
 
 let $FZF_DEFAULT_OPTS='--layout=reverse'
