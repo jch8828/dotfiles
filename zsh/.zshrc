@@ -132,6 +132,7 @@ alias cddl="cd ~/Downloads"
 alias zshrc='vim ~/.zshrc'
 alias pip='pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
 alias dps='docker ps'
+alias cat=bat
 
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
