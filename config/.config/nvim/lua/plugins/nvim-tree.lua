@@ -14,6 +14,7 @@ return {
     },
     filters = {
       custom = { ".DS_Store", ".git", ".venv" },
+      dotfiles = false
     },
   },
   config = function (_, opts)

@@ -18,19 +18,19 @@ return {
           i = {
             ["<C-k>"] = actions.move_selection_previous, -- move to prev result
             ["<C-j>"] = actions.move_selection_next, -- move to next result
-            ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+            -- ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
           },
         },
       },
       pickers = {
         live_grep = {
-          file_ignore_patterns = { 'node_modules', '.git', '.venv' },
+          file_ignore_patterns = { 'node_modules', '%.git%/', '.venv' },
           additional_args = function(_)
               return { "--hidden" }
           end
         },
         find_files = {
-          file_ignore_patterns = { 'node_modules', '.git', '.venv' },
+          file_ignore_patterns = { 'node_modules', '%.git%/', '.venv' },
           hidden = true
         }
       },

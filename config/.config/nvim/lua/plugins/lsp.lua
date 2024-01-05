@@ -29,6 +29,7 @@ return {
         "lemminx",
         "marksman",
         "quick_lint_js",
+        "jedi_language_server"
         -- "tsserver", # requires npm to be installed
         -- "yamlls", # requires npm to be installed
       }
