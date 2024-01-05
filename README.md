@@ -1,7 +1,7 @@
 # dotfiles
 
 ## Install dotfiles
-`stow */ -t $HOME`
+`stow -vt $HOME */`
 
 ## Uninstall dotfiles
-`stow -D */ -t $HOME` 
+`stow -vDt $HOME */` 
