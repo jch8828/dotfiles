@@ -5,6 +5,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+source /home/daddy/Projects/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -91,7 +93,7 @@ plugins=(
   kubectl
   web-search
   zsh-autosuggestions
-  zsh-syntax-highlighting
+  # zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -129,7 +131,9 @@ alias vi=nvim
 alias cdp="cd ~/Projects"
 alias cddoc="cd ~/Documents"
 alias cddl="cd ~/Downloads"
-alias zshrc='vim ~/.zshrc'
+alias viz='nvim ~/.zshrc'
+alias vit='nvim ~/.tmux.conf'
+alias vid='nvim ~/.dotfiles'
 alias pip='pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
 alias dps='docker ps'
 alias cat=bat
