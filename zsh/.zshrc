@@ -5,8 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source /home/daddy/Projects/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -92,8 +90,8 @@ plugins=(
   encode64
   kubectl
   web-search
+  zsh-syntax-highlighting
   zsh-autosuggestions
-  # zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -106,11 +104,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='nvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
 set -o vi
 
 # Compilation flags
@@ -137,7 +135,19 @@ alias vid='nvim ~/.dotfiles'
 alias pip='pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
 alias dps='docker ps'
 alias cat=bat
-eval $(thefuck --alias f)
+
+alias t="tmux"
+alias tk="tmux kill-session -t"
+alias tl="tmux list-sessions"
+alias ta="tmux attach -t"
+alias tn="tmux new -s"
+
+alias lls="/bin/ls"
+
+alias ls="exa --icons"
+alias ll="exa -l --icons"
+alias la="exa -la --icons"
+alias tree="exa -T --icons --git-ignore"
 
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
@@ -152,4 +162,4 @@ eval "$(pyenv init -)"
 
 # export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
-eval $(thefuck --alias)
+eval $(thefuck --alias f)
