@@ -137,6 +137,7 @@ alias vid='nvim ~/.dotfiles'
 alias pip='pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
 alias dps='docker ps'
 alias cat=bat
+eval $(thefuck --alias f)
 
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
@@ -150,3 +151,5 @@ eval "$(pyenv init -)"
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
 # export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
+eval $(thefuck --alias)
