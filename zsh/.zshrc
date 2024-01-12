@@ -104,11 +104,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='nvim'
+# fi
 set -o vi
 
 # Compilation flags
@@ -131,7 +131,7 @@ alias cddoc="cd ~/Documents"
 alias cddl="cd ~/Downloads"
 alias viz='nvim ~/.zshrc'
 alias vit='nvim ~/.tmux.conf'
-alias vid='nvim ~/.dotfiles'
+alias vid='cd ~/.dotfiles && nvim ~/.dotfiles'
 alias pip='pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
 alias dps='docker ps'
 alias cat=bat
@@ -153,13 +153,10 @@ export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-# source ~/Projects/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
-
-# export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 eval $(thefuck --alias f)
