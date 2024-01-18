@@ -16,8 +16,8 @@ local expr_opts = { noremap = true, expr = true, silent = true }
 vim.g.mapleader = " "
 
 -- Better escape using jk in insert and terminal mode
-keymap.set("i", "jk", "<ESC>", default_opts)
-keymap.set("t", "jk", "<C-\\><C-n>", default_opts)
+keymap.set("i", "hj", "<ESC>", default_opts)
+keymap.set("t", "hj", "<C-\\><C-n>", default_opts)
 keymap.set("n", "<leader>ww", ":w<CR>", default_opts) -- save
 
 -- Center search results
