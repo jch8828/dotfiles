@@ -128,6 +128,7 @@ alias c=code
 alias vscode=code
 alias a=alias
 alias vim=nvim
+alias n=nvim
 alias cdp="cd ~/Projects"
 alias cddoc="cd ~/Documents"
 alias cddl="cd ~/Downloads"
