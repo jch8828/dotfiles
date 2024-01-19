@@ -157,8 +157,11 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
-
 eval $(thefuck --alias f)
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_DEFAULT_OPTS="--layout=reverse --inline-info"
 
 # To customize prompt, run `p10k configure` or edit ~/.p1ek.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
