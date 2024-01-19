@@ -1,0 +1,30 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "int-test-local",
+      "type": "python",
+      "request": "launch",
+      "module": "pytest",
+      "justMyCode": false,
+      "args": ["tests/integration", "--integration-test-type", "local"]
+    },
+    {
+      "name": "unit-test",
+      "type": "python",
+      "request": "launch",
+      "module": "pytest",
+      "justMyCode": false,
+      "args": ["tests/unit"]
+    },
+    {
+      "name": "start",
+      "type": "python",
+      "request": "launch",
+      "module": "uvicorn",
+      "justMyCode": false,
+      "envFile": "${workspaceFolder}/.env.example",
+      "args": ["api.app:app", "--reload", "--port", "54321"]
+    }
+  ]
+}
