@@ -138,6 +138,7 @@ alias vid='cd ~/.dotfiles && nvim ~/.dotfiles'
 alias pip='pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
 alias dps='docker ps'
 alias cat=bat
+alias lg=lazygit
 
 alias t="tmux"
 alias tk="tmux kill-session -t"
