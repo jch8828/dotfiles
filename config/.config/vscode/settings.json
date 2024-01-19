@@ -23,6 +23,15 @@
     "private": true
   },
 
+  "[python]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit",
+      "source.organizeImports.isort": "explicit"
+    },
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+
   "python.testing.unittestEnabled": false,
   "python.testing.nosetestsEnabled": false,
   "python.testing.pytestEnabled": true,
@@ -31,11 +40,12 @@
   "python.autoComplete.extraPaths": ["src"],
   "python.analysis.extraPaths": ["src"],
 
-  "python.formatting.provider": "black",
-
   "telemetry.enableCrashReporter": false,
   "telemetry.enableTelemetry": false,
+  "telemetry.telemetryLevel": "off",
 
   "workbench.iconTheme": "material-icon-theme",
-  "workbench.tree.indent": 20
+  "workbench.tree.indent": 20,
+
+  "window.zoomLevel": 1
 }
