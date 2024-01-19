@@ -1,35 +1,41 @@
 {
-    "editor.formatOnSave": true,
+  "breadcrumbs.enabled": false,
+  "editor.formatOnSave": true,
+  "editor.rulers": [120],
+  "editor.wordWrap": "on",
+  "editor.minimap.enabled": false,
+  "editor.stickyScroll.enabled": true,
 
-    "python.testing.unittestArgs": [
-        "-v",
-        "-s",
-        "./tests",
-        "-p",
-        "test_*.py"
-    ],
-    "python.testing.pytestEnabled": false,
-    "python.testing.nosetestsEnabled": false,
-    "python.testing.unittestEnabled": true,
-    "python.formatting.provider": "black",
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
 
-    "editor.rulers": [
-        120
-    ],
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/.classpath": true,
+    "**/.factorypath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/*.pyc": true,
+    "**/.mypy_cache": true,
+    "**/.pytest_cache": true,
+    "**/.venv": true,
+    "**/.git": true,
+    "private": true
+  },
 
-    "workbench.iconTheme": "material-icon-theme",
+  "python.testing.unittestEnabled": false,
+  "python.testing.nosetestsEnabled": false,
+  "python.testing.pytestEnabled": true,
+  "python.testing.pytestArgs": ["--no-cov", "tests"],
+  "python.testing.unittestArgs": ["-v", "-s", "./tests", "-p", "test_*.py"],
+  "python.autoComplete.extraPaths": ["src"],
+  "python.analysis.extraPaths": ["src"],
 
-    "telemetry.enableCrashReporter": false,
-    "telemetry.enableTelemetry": false,
+  "python.formatting.provider": "black",
 
-    "files.exclude": {
-        "**/__pycache__": true,
-        "**/.classpath": true,
-        "**/.factorypath": true,
-        "**/.project": true,
-        "**/.settings": true,
-        "**/*.pyc": true,
-        "private": true
-    },
+  "telemetry.enableCrashReporter": false,
+  "telemetry.enableTelemetry": false,
+
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.tree.indent": 20
 }
-
