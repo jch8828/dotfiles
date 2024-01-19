@@ -9,6 +9,7 @@
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
 
+  "files.autoSave": "afterDelay",
   "files.exclude": {
     "**/__pycache__": true,
     "**/.classpath": true,
@@ -32,17 +33,20 @@
     "editor.defaultFormatter": "ms-python.black-formatter"
   },
 
+  "python.languageServer": "Default",
+  "python.analysis.extraPaths": ["src"],
+  "python.autoComplete.extraPaths": ["src"],
   "python.testing.unittestEnabled": false,
   "python.testing.nosetestsEnabled": false,
   "python.testing.pytestEnabled": true,
   "python.testing.pytestArgs": ["--no-cov", "tests"],
   "python.testing.unittestArgs": ["-v", "-s", "./tests", "-p", "test_*.py"],
-  "python.autoComplete.extraPaths": ["src"],
-  "python.analysis.extraPaths": ["src"],
 
   "telemetry.enableCrashReporter": false,
   "telemetry.enableTelemetry": false,
   "telemetry.telemetryLevel": "off",
+
+  "terminal.integrated.defaultProfile.osx": "zsh",
 
   "workbench.iconTheme": "material-icon-theme",
   "workbench.tree.indent": 20,
