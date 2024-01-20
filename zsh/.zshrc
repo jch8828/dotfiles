@@ -124,21 +124,23 @@ set -o vi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias c=code
-alias vscode=code
 alias a=alias
-alias vim=nvim
+alias c=code
 alias n=nvim
+alias vim=nvim
+alias cat=bat
+alias cls="clear; printf '\e[3J'"
+alias lg=lazygit
+alias dps='docker ps'
+alias pip='pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
+
 alias cdp="cd ~/Projects"
 alias cddoc="cd ~/Documents"
 alias cddl="cd ~/Downloads"
+
 alias viz='nvim ~/.zshrc'
 alias vit='nvim ~/.tmux.conf'
 alias vid='cd ~/.dotfiles && nvim ~/.dotfiles'
-alias pip='pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
-alias dps='docker ps'
-alias cat=bat
-alias lg=lazygit
 
 alias t="tmux"
 alias tk="tmux kill-session -t"
