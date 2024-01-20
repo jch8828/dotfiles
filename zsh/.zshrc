@@ -81,16 +81,11 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
-  brew
   common-aliases
-  docker
-  history
-  jsontools
-  python
-  sudo
   encode64
+  git
   kubectl
+  sudo
   web-search
   zsh-syntax-highlighting
   zsh-autosuggestions
@@ -126,6 +121,7 @@ set -o vi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias a=alias
 alias c=code
+alias hsi='history | grep -i'
 alias n=nvim
 alias vim=nvim
 alias cat=bat
