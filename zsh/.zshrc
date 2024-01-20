@@ -101,11 +101,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='nvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
 set -o vi
 
 # Compilation flags
@@ -134,9 +134,11 @@ alias cdp="cd ~/Projects"
 alias cddoc="cd ~/Documents"
 alias cddl="cd ~/Downloads"
 
-alias viz='nvim ~/.zshrc'
-alias vit='nvim ~/.tmux.conf'
-alias vid='cd ~/.dotfiles && nvim ~/.dotfiles'
+alias lls="/bin/ls"
+alias ls="exa --icons"
+alias ll="exa -l --icons"
+alias la="exa -la --icons"
+# alias tree="exa -T --icons --git-ignore"
 
 alias t="tmux"
 alias tk="tmux kill-session -t"
@@ -144,12 +146,9 @@ alias tl="tmux list-sessions"
 alias ta="tmux attach -t"
 alias tn="tmux new -s"
 
-alias lls="/bin/ls"
-
-alias ls="exa --icons"
-alias ll="exa -l --icons"
-alias la="exa -la --icons"
-alias tree="exa -T --icons --git-ignore"
+alias viz='nvim ~/.zshrc'
+alias vit='nvim ~/.tmux.conf'
+alias vid='cd ~/.dotfiles && nvim ~/.dotfiles'
 
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
