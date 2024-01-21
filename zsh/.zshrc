@@ -139,7 +139,6 @@ alias cddl="cd ~/Downloads"
 alias ll="exa -l --icons"
 alias la="exa -la --icons"
 alias llk='exa -la --icons | grep "^l"'
-# alias tree="exa -T --icons --git-ignore"
 
 alias t="tmux"
 alias tk="tmux kill-session -t"
@@ -149,7 +148,7 @@ alias tn="tmux new -s"
 
 alias viz='nvim ~/.zshrc'
 alias vit='nvim ~/.tmux.conf'
-alias vid='cd ~/.dotfiles && nvim ~/.dotfiles'
+alias vid='cd ~/Projects/dotfiles && nvim .'
 
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
