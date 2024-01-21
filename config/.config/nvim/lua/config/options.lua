@@ -20,10 +20,10 @@ vim.bo.softtabstop = 2
 -- Line Wrapping
 opt.wrap = false
 
+opt.autoread = true
 opt.scrolloff = 10
 opt.virtualedit = "block"
 opt.inccommand = "split"
--- opt.wo.cursorline = 120
 
 -- Search Settings
 opt.ignorecase = true
@@ -31,12 +31,12 @@ opt.smartcase = true
 
 -- Cursor Line
 opt.cursorline = true
+opt.colorcolumn = "120"
 
 -- Appearance
 opt.termguicolors = true
 opt.background = "dark"
 opt.signcolumn = "yes"
-opt.colorcolumn = "120"
 
 -- Backspace
 opt.backspace = "indent,eol,start"
