@@ -1,13 +1,17 @@
 # dotfiles
 
 ## Install dotfiles
-`stow -vt $HOME */`
+
+`make install`
 
 ## Uninstall dotfiles
-`stow -vDt $HOME */` 
+
+`make uninstall`
 
 ## Backup Brew bundle
-`brew bundle dump --file=~/Projects/dotfiles/Brewfile`
+
+`make brew-list`
 
 ## Install all the brew packages
-`brew bundle --file=~/Projects/dotfiles/Brewfile`
+
+`make brew-install`
