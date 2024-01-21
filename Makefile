@@ -1,8 +1,8 @@
 install:
-	stow -vt $HOME */
+	@stow -vt ${HOME} */
 
 uninstall:
-	stow -vDt $HOME */
+	@stow -vDt ${HOME} */
 
 brew-list:
 	brew bundle dump --file=$(pwd)/Brewfile

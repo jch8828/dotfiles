@@ -134,10 +134,11 @@ alias cdp="cd ~/Projects"
 alias cddoc="cd ~/Documents"
 alias cddl="cd ~/Downloads"
 
-alias lls="/bin/ls"
-alias ls="exa --icons"
+# alias lls="/bin/ls"
+# alias ls="exa --icons"
 alias ll="exa -l --icons"
 alias la="exa -la --icons"
+alias llk='exa -la --icons | grep "^l"'
 # alias tree="exa -T --icons --git-ignore"
 
 alias t="tmux"
