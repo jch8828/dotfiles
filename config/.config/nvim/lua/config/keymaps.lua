@@ -40,3 +40,8 @@ keymap.set("n", "<Left>", ":vertical resize +1<CR>", default_opts)
 keymap.set("n", "<Right>", ":vertical resize -1<CR>", default_opts)
 keymap.set("n", "<Up>", ":resize +1<CR>", default_opts)
 keymap.set("n", "<Down>", ":resize -1<CR>", default_opts)
+
+-- Split window management
+keymap.set("n", "<leader>\\", "<C-w>v") -- split window vertically
+keymap.set("n", "<leader>-", "<C-w>s") -- split window horizontally
+keymap.set("n", "<leader>=", "<C-w>=") -- make split windows equal width
