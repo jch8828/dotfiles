@@ -35,12 +35,6 @@ keymap.set("v", "p", '"_dP', default_opts)
 -- delete single character without copying into register
 keymap.set("n", "x", '"_x', default_opts)
 
--- Resizing panes
--- keymap.set("n", "<Left>", ":vertical resize +1<CR>", default_opts)
--- keymap.set("n", "<Right>", ":vertical resize -1<CR>", default_opts)
--- keymap.set("n", "<Up>", ":resize +1<CR>", default_opts)
--- keymap.set("n", "<Down>", ":resize -1<CR>", default_opts)
-
 -- Split window management
 keymap.set("n", "<leader>\\", "<C-w>v") -- split window vertically
 keymap.set("n", "<leader>-", "<C-w>s") -- split window horizontally
