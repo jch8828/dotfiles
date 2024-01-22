@@ -5,7 +5,7 @@ uninstall:
 	@stow -vDt ${HOME} */
 
 brew-list:
-	brew bundle dump --file=$(pwd)/Brewfile
+	@rm -rf ./Brewfile && brew bundle dump --describe --file=./Brewfile
 
 brew-install:
-	brew bundle --file=$(pwd)/Brewfile
+	@brew bundle --file=./Brewfile
