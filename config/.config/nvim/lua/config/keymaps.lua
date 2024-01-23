@@ -18,8 +18,8 @@ keymap.set("n", "n", "nzz", default_opts)
 keymap.set("n", "N", "Nzz", default_opts)
 
 -- Visual line wraps
-keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", expr_opts)
-keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", expr_opts)
+keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", expr_opts)
+keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", expr_opts)
 
 -- Move selected line / block of text in visual mode
 keymap.set("x", "K", ":move '<-2<CR>gv-gv", default_opts)
