@@ -1,0 +1,9 @@
+{
+    "diffeditor.ignoretrimwhitespace": false,
+    "python.analysis.autosearchpaths": true,
+    "security.workspace.trust.untrustedfiles": "open",
+    "terminal.integrated.enablemultilinepastewarning": false,
+    "terminal.explorerkind": "external",
+    "terminal.integrated.fontfamily": "meslolgs nf",
+    "workbench.startupeditor": "none"
+}
