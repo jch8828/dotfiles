@@ -42,14 +42,8 @@
   "python.testing.pytestArgs": ["--no-cov", "tests"],
   "python.testing.unittestArgs": ["-v", "-s", "./tests", "-p", "test_*.py"],
 
-  "telemetry.enableCrashReporter": false,
-  "telemetry.enableTelemetry": false,
   "telemetry.telemetryLevel": "off",
-
   "terminal.integrated.defaultProfile.osx": "zsh",
-
-  "workbench.iconTheme": "material-icon-theme",
   "workbench.tree.indent": 20,
-
   "window.zoomLevel": 1
 }
