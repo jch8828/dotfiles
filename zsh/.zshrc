@@ -121,14 +121,15 @@ set -o vi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias a=alias
 alias c=code
-alias hsi='history | grep -i'
-alias n=nvim
-alias vim=nvim
 alias cat=bat
 alias cls="clear; printf '\e[3J'"
-alias lg=lazygit
 alias dps='docker ps'
+alias hsi='history | grep -i'
+alias n=nvim
+alias lg=lazygit
 alias pip='pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
+alias vim=nvim
+alias wcl='wc -l'
 
 alias cdp="cd ~/Projects"
 alias cddoc="cd ~/Documents"
