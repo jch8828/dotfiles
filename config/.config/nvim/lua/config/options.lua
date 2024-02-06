@@ -15,28 +15,27 @@ opt.tabstop = 2
 opt.shiftwidth = 2
 opt.expandtab = true
 opt.autoindent = true
-vim.bo.softtabstop = 2
+-- vim.bo.softtabstop = 2
 
 -- Line Wrapping
 opt.wrap = false
 
 opt.autoread = true
-opt.scrolloff = 10
-opt.virtualedit = "block"
-opt.inccommand = "split"
+-- opt.virtualedit = "block"
+-- opt.inccommand = "split"
 
 -- Search Settings
 opt.ignorecase = true
 opt.smartcase = true
 
--- Cursor Line
-opt.cursorline = true
-opt.colorcolumn = "120"
-
 -- Appearance
 opt.termguicolors = true
-opt.background = "dark"
 opt.signcolumn = "yes"
+
+-- Cursor Line
+opt.cursorline = true
+opt.colorcolumn = "80"
+opt.scrolloff = 10
 
 -- Backspace
 opt.backspace = "indent,eol,start"
@@ -49,10 +48,12 @@ opt.splitright = true
 opt.splitbelow = true
 
 -- Consider - as part of keyword
-opt.iskeyword:append("-")
+-- opt.iskeyword:append("-")
 
--- Disable the mouse while in nvim
--- opt.mouse = ""
+-- Enable mouse mode, to disable set value = ""
+opt.mouse = "a"
 
 -- turn off swapfile
 opt.swapfile = false
+opt.undofile = true
+opt.updatetime = 80
