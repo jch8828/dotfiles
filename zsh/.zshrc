@@ -126,12 +126,13 @@ alias cat=bat
 alias cls="clear; printf '\e[3J'"
 alias dps='docker ps'
 alias hsi='history | grep -i'
-alias n=nvim
+alias v=nvim
 alias lg=lazygit
 alias pip='pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
 alias vim=nvim
 alias wcl='wc -l'
 
+alias cd=z
 alias cdp="cd ~/Projects"
 alias cddoc="cd ~/Documents"
 alias cddl="cd ~/Downloads"
@@ -162,6 +163,8 @@ eval $(thefuck --alias f)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_DEFAULT_OPTS="--layout=reverse --inline-info"
+
+eval "$(zoxide init zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p1ek.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
