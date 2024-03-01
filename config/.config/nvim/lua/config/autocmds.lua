@@ -13,6 +13,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
   once = true,
 })
 
+-- Auto format and save
 vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
   callback = function()
     if vim.bo.modified and not vim.bo.readonly and vim.fn.expand("%") ~= "" and vim.bo.buftype == "" then
