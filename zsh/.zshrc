@@ -126,7 +126,7 @@ alias cat=bat
 alias cls="clear; printf '\e[3J'"
 alias dps='docker ps'
 alias hsi='history | grep -i'
-alias v=nvim
+alias vi=nvim
 alias lg=lazygit
 alias pip='pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
 alias vim=nvim
@@ -165,6 +165,8 @@ export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_DEFAULT_OPTS="--layout=reverse --inline-info"
 
 eval "$(zoxide init zsh)"
+
+export PATH=~/bin:$PATH
 
 # To customize prompt, run `p10k configure` or edit ~/.p1ek.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
