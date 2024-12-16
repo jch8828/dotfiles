@@ -86,6 +86,7 @@ plugins=(
   encode64
   git
   kubectl
+  docker
   sudo
   web-search
   zsh-syntax-highlighting
@@ -139,9 +140,9 @@ alias cddl="cd ~/Downloads"
 
 # alias lls="/bin/ls"
 # alias ls="exa --icons"
-alias ll="exa -l --icons --group-directories-first"
-alias la="exa -la --icons --group-directories-first"
-alias lk='exa -la --icons | grep "^l"'
+# alias ll="exa -l --icons --group-directories-first"
+# alias la="exa -la --icons --group-directories-first"
+# alias lk='exa -la --icons | grep "^l"'
 
 alias t="tmux"
 alias tk="tmux kill-session -t"

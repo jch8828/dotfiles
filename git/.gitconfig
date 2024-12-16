@@ -36,4 +36,6 @@
 [mergetool]
 	prompt = false
 	keepBackup = false
-
+[user]
+	email = jchen13@humana.com
+	name = jchen13
